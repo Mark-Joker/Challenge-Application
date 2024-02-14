@@ -5,7 +5,8 @@ namespace Application.Domain
     public class Account
     {
         public const decimal PayInLimit = 4000m;
-        
+        public const decimal WarningMoneyThreshold = 500m;
+
         public Guid Id { get; set; }
 
         public User User { get; set; }
@@ -55,14 +56,14 @@ namespace Application.Domain
 
         public bool AreFundsLow()
         {
-            bool result = Balance < 500m;
+            bool result = Balance < WarningMoneyThreshold;
 
             return result;
         }
 
         public bool IsApproachingPayInLimit()
         {
-            bool result = PayInLimit - PaidIn < 500m;
+            bool result = PayInLimit - PaidIn < WarningMoneyThreshold;
 
             return result;
         }
